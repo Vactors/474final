@@ -31,6 +31,8 @@ public class MetallicFlakeShader implements Shader {
     	
     	Vector3.add(deviantVector, state.getNormal(), deviantVector);
     	
+    	deviantVector.normalize();
+    	
         return new Color(Math.abs(state.getRay().dot(deviantVector)));
     }
 
