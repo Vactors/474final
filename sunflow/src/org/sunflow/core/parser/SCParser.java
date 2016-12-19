@@ -48,6 +48,7 @@ import org.sunflow.core.shader.ConstantShader;
 import org.sunflow.core.shader.DiffuseShader;
 import org.sunflow.core.shader.GlassShader;
 import org.sunflow.core.shader.IDShader;
+import org.sunflow.core.shader.MetallicFlakeShader;
 import org.sunflow.core.shader.MirrorShader;
 import org.sunflow.core.shader.PhongShader;
 import org.sunflow.core.shader.ShinyDiffuseShader;
@@ -619,7 +620,9 @@ public class SCParser implements SceneParser {
             if (p.peekNextToken("samples"))
                 api.parameter("samples", p.getNextInt());
             api.shader(name, new UberShader());
-        } else
+        }else if(p.peekNextToken("metallicflake")){
+        	api.shader(name, new MetallicFlakeShader());
+        }else
             UI.printWarning(Module.API, "Unrecognized shader type: %s", p.getNextToken());
         p.checkNextToken("}");
         return true;

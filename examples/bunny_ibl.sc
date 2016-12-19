@@ -24,8 +24,7 @@ light {
 
 shader {
   name default-shader
-  type diffuse
-  diff 0.25 0.25 0.25
+  type metallicflake
 }
 
 object {
