@@ -21,19 +21,17 @@ public class MetallicFlakeShader implements Shader {
 
     public Color getRadiance(ShadingState state) {
     	
-    	float devX = (float)Math.random()*deviationAngle;
-    	float devY = (float)Math.random()*deviationAngle;
+    	state.faceforward();
+    	
+    	float devX = (float)Math.random()*deviationAngle - deviationAngle/2;
+    	float devY = (float)Math.random()*deviationAngle - deviationAngle/2;
     	
     	Vector3 deviantVector = new Vector3((float)Math.cos(devX), (float)Math.sin(devY), 1);
+    	deviantVector = state.getBasis().transform(deviantVector);
     	
-    	Vector3 normal = new Vector3(
-    			state.getNormal().x+deviantVector.x,
-    			state.getNormal().y+deviantVector.y,
-    			state.getNormal().z+deviantVector.z);
+    	Vector3.add(deviantVector, state.getNormal(), deviantVector);
     	
-    	normal.normalize();
-    	
-        return new Color(Math.abs(state.getRay().dot(normal)));
+        return new Color(Math.abs(state.getRay().dot(deviantVector)));
     }
 
     public void scatterPhoton(ShadingState state, Color power) {
