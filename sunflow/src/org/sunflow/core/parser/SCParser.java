@@ -621,7 +621,13 @@ public class SCParser implements SceneParser {
                 api.parameter("samples", p.getNextInt());
             api.shader(name, new UberShader());
         }else if(p.peekNextToken("metallicflake")){
-        	api.shader(name, new MetallicFlakeShader());
+        	if(p.peekNextToken("diffuse")){
+        		api.parameter("diffuse", parseColor());
+        	}
+        	if(p.peekNextToken("shiny")){
+        		api.parameter("shiny", parseColor());
+        	}
+           	api.shader(name, new MetallicFlakeShader());
         }else
             UI.printWarning(Module.API, "Unrecognized shader type: %s", p.getNextToken());
         p.checkNextToken("}");

@@ -27,6 +27,8 @@ light {
 shader {
   name metal
   type metallicflake
+  diffuse .7 .5 0
+  shiny .5 .5 .5
 }
 
 
