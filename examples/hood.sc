@@ -15,7 +15,7 @@ camera {
 
 light {
   type ibl
-  image warehouse.jpg
+  image warehouse.hdr
   center 0 -1 0
   up 0 0 1
   lock 64
