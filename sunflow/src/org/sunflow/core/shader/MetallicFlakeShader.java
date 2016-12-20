@@ -35,9 +35,9 @@ public class MetallicFlakeShader implements Shader {
 
     public Color getRadiance(ShadingState state) {
     	
-    	float variancex = /*(float) (Math.random()*.1f - .05f);*/ 0;
-    	float variancey = /*(float) (Math.random()*.1f - .05f);*/ 0;
-    	float variancez = /*(float) (Math.random()*.1f - .05f);*/ 0;
+    	float variancex = (float) (Math.random()*.1f - .05f);
+    	float variancey = (float) (Math.random()*.1f - .05f);
+    	float variancez = (float) (Math.random()*.1f - .05f);
     	
         // make sure we are on the right side of the material
         state.faceforward();
