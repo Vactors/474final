@@ -13,7 +13,7 @@ import org.sunflow.core.Texture;
 public class MetallicFlakeShader implements Shader {
 	
 
-	private float deviationAngle = (float) Math.toRadians(10);
+	private float deviationAngle = (float) Math.toRadians(70);
 	
     public boolean update(ParameterList pl, SunflowAPI api) {
         return true;
@@ -32,8 +32,9 @@ public class MetallicFlakeShader implements Shader {
     	Vector3.add(deviantVector, state.getNormal(), deviantVector);
     	
     	deviantVector.normalize();
-    	
-        return new Color(Math.abs(state.getRay().dot(deviantVector)));
+    
+ 
+        return Color.mul(new Color(Math.abs(state.getRay().dot(deviantVector))),Color.RED);
     }
 
     public void scatterPhoton(ShadingState state, Color power) {
