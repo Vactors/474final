@@ -34,6 +34,11 @@ public class MetallicFlakeShader implements Shader {
     }
 
     public Color getRadiance(ShadingState state) {
+    	
+    	float variancex = /*(float) (Math.random()*.1f - .05f);*/ 0;
+    	float variancey = /*(float) (Math.random()*.1f - .05f);*/ 0;
+    	float variancez = /*(float) (Math.random()*.1f - .05f);*/ 0;
+    	
         // make sure we are on the right side of the material
         state.faceforward();
         // direct lighting
@@ -46,9 +51,9 @@ public class MetallicFlakeShader implements Shader {
         float cos = state.getCosND();
         float dn = 2 * cos;
         Vector3 refDir = new Vector3();
-        refDir.x = (dn * state.getNormal().x) + state.getRay().getDirection().x;
-        refDir.y = (dn * state.getNormal().y) + state.getRay().getDirection().y;
-        refDir.z = (dn * state.getNormal().z) + state.getRay().getDirection().z;
+        refDir.x = (dn * state.getNormal().x + variancex) + state.getRay().getDirection().x;
+        refDir.y = (dn * state.getNormal().y + variancey) + state.getRay().getDirection().y;
+        refDir.z = (dn * state.getNormal().z + variancez) + state.getRay().getDirection().z;
         Ray refRay = new Ray(state.getPoint(), refDir);
         // compute Fresnel term
         cos = 1 - cos;
