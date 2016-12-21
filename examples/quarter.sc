@@ -6,7 +6,7 @@ image {
 
 camera {
   type pinhole
-  eye    5 -25 5
+  eye    5 -22 5
   target 0 0 0
   up     0 0 1
   fov    60
@@ -27,7 +27,7 @@ light {
 shader {
   name metal
   type metallicflake
-  diffuse .75 .05 .75
+  diffuse .05 .05 .05
   shiny 1 1 1
 }
 
