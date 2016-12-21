@@ -20,7 +20,7 @@ public class MetallicFlakeShader implements Shader {
 
     public MetallicFlakeShader() {
         diff = Color.GRAY;
-        refl = 0.5f;
+        refl = 0.1f;
     }
 
     public boolean update(ParameterList pl, SunflowAPI api) {
@@ -35,9 +35,16 @@ public class MetallicFlakeShader implements Shader {
 
     public Color getRadiance(ShadingState state) {
     	
-    	float variancex = 0;//(float) (Math.random()*.1f - .05f);
-    	float variancey = 0;//(float) (Math.random()*.1f - .05f);
-    	float variancez = 0;//(float) (Math.random()*.1f - .05f);
+    	float variancex = 0;
+    	float variancey = 0;
+    	float variancez = 0;
+    	
+    	double pb = Math.random();
+    	if(pb>.7){
+        	variancex = (float) (Math.random()*.1f - .05f);
+        	variancey = (float) (Math.random()*.1f - .05f);
+        	variancez = (float) (Math.random()*.1f - .05f);
+    	}
     	
         // make sure we are on the right side of the material
         state.faceforward();
@@ -51,9 +58,9 @@ public class MetallicFlakeShader implements Shader {
         float cos = state.getCosND();
         float dn = 2 * cos;
         Vector3 refDir = new Vector3();
-        refDir.x = (dn * state.getNormal().x + variancex) + state.getRay().getDirection().x;
-        refDir.y = (dn * state.getNormal().y + variancey) + state.getRay().getDirection().y;
-        refDir.z = (dn * state.getNormal().z + variancez) + state.getRay().getDirection().z;
+        refDir.x = (dn * state.getNormal().x+variancex) + state.getRay().getDirection().x;
+        refDir.y = (dn * state.getNormal().y+variancey)+ state.getRay().getDirection().y;
+        refDir.z = (dn * state.getNormal().z+variancez) + state.getRay().getDirection().z;
         Ray refRay = new Ray(state.getPoint(), refDir);
         // compute Fresnel term
         cos = 1 - cos;
@@ -69,6 +76,7 @@ public class MetallicFlakeShader implements Shader {
     }
 
     public void scatterPhoton(ShadingState state, Color power) {
+    	
         Color diffuse;
         // make sure we are on the right side of the material
         state.faceforward();
