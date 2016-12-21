@@ -625,7 +625,7 @@ public class SCParser implements SceneParser {
         		api.parameter("diffuse", parseColor());
         	}
         	if(p.peekNextToken("shiny")){
-        		api.parameter("shiny", parseColor());
+        		api.parameter("shiny", p.getNextFloat());
         	}
            	api.shader(name, new MetallicFlakeShader());
         }else

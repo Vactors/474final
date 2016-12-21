@@ -1,6 +1,6 @@
 image {
-  resolution 640 480
-  aa 0 1
+  resolution 1440 1080
+  aa 0 4
   filter gaussian
 }
 
@@ -19,7 +19,7 @@ light {
   center 0 -1 0
   up 0 0 1
   lock 64
-  samples 64
+  samples 128
 }
 
 
@@ -27,7 +27,7 @@ light {
 shader {
   name metal
   type mirror
-  refl .75 .75 .75
+  refl 1 1 1
 }
 
 

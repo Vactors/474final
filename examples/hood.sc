@@ -1,6 +1,6 @@
 image {
-  resolution 640 480
-  aa 0 1
+  resolution 1440 1080
+  aa 0 4
   filter gaussian
 }
 
@@ -19,7 +19,7 @@ light {
   center 0 -1 0
   up 0 0 1
   lock 64
-  samples 64
+  samples 128
 }
 
 
@@ -28,7 +28,7 @@ shader {
   name metal
   type metallicflake
   diffuse .75 .05 .75
-  shiny .1 .1 .1
+  shiny .1
 }
 
 
