@@ -27,7 +27,7 @@ light {
 shader {
   name metal
   type mirror
-  refl 1 1 1
+  refl .1 .1 .1
 }
 
 
